@@ -263,7 +263,7 @@ export function Chat({ messages, onSendMessage }: ChatProps) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask a coding question... (Shift + Enter for new line)"
+            placeholder="Ask a coding question..."
             className="flex-1 p-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none min-h-[44px] max-h-[200px] overflow-y-auto placeholder-gray-500 dark:placeholder-gray-400 font-mono"
             disabled={isLoading}
             rows={1}
@@ -281,9 +281,6 @@ export function Chat({ messages, onSendMessage }: ChatProps) {
               <Send size={20} />
             )}
           </button>
-        </div>
-        <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center font-mono">
-          Press Enter to send, Shift + Enter for new line
         </div>
       </form>
     </div>

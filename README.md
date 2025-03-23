@@ -1,9 +1,4 @@
-
-# Coder-Assistance
-A modern, feature-rich coding assistant that helps developers with code-related tasks, formatting, and analysis.
-=======
-# Professional Coding Assistant
-
+# Coder Assistant
 A modern, feature-rich coding assistant that helps developers with code-related tasks, formatting, and analysis.
 
 ## Features

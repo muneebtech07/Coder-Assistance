@@ -149,4 +149,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Supabase](https://supabase.com/) for backend services
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/) for code editing
 - [Tailwind CSS](https://tailwindcss.com/) for styling
->>>>>>> 3321731 (Initial commit)

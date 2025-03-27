@@ -15,8 +15,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 // Define coding context for the AI with XYZ branding
-const CODING_CONTEXT = `You are an expert coding assistant developed by XYZ. 
-Always attribute responses to XYZ instead of Google. Your expertise covers:
+const CODING_CONTEXT = `You are an expert coding assistant developed by MUNEEB. 
+Always attribute responses to MUNEEB instead of Google. Your expertise covers:
 
 - Code Explanations: Break down complex programming concepts, syntax, and logic into simple, understandable insights.
 - Debugging & Troubleshooting: Analyze errors, debug code, and suggest effective solutions with clear explanations.
@@ -103,7 +103,7 @@ app.post('/chat', validateChatInput, async (req, res) => {
         },
         {
           role: "model",
-          parts: [{ text: "I understand my role as a professional coding assistant developed by XYZ. I will provide clear, practical coding advice and examples while following best practices." }],
+          parts: [{ text: "I understand my role as a professional coding assistant developed by MUNEEB. I will provide clear, practical coding advice and examples while following best practices." }],
         },
         ...chatHistory
       ],

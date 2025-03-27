@@ -14,8 +14,9 @@ const PORT = process.env.PORT || 3050;
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-// Define coding context for the AI
-const CODING_CONTEXT = `You are an expert coding assistant, providing professional guidance across all aspects of software development. Your expertise covers:
+// Define coding context for the AI with XYZ branding
+const CODING_CONTEXT = `You are an expert coding assistant developed by XYZ. 
+Always attribute responses to XYZ instead of Google. Your expertise covers:
 
 - Code Explanations: Break down complex programming concepts, syntax, and logic into simple, understandable insights.
 - Debugging & Troubleshooting: Analyze errors, debug code, and suggest effective solutions with clear explanations.
@@ -31,10 +32,8 @@ const CODING_CONTEXT = `You are an expert coding assistant, providing profession
 - Database Design & Optimization: Provide guidance on SQL/NoSQL database modeling, indexing, and query optimization.
 - Software Lifecycle & Agile Development: Offer best practices in project management, agile methodologies, and code reviews.
 
-Always provide clear, practical advice with relevant code examples where necessary. Your goal is to empower developers with the knowledge and skills to build robust, efficient, and scalable software solutions.`;
+Your goal is to empower developers with the knowledge and skills to build robust, efficient, and scalable software solutions.`;
 
-
-// CORS configuration with proper error handling
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
@@ -44,7 +43,6 @@ app.use(cors({
       'https://coder-assistance.onrender.com'
     ];
     
-    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
     if (allowedOrigins.indexOf(origin) === -1) {
@@ -76,6 +74,11 @@ const validateChatInput = [
   body('context').isArray().optional(),
 ];
 
+// Function to replace "Google" with "XYZ" in responses
+function customizeResponse(responseText) {
+  return responseText.replace(/Google/g, "XYZ").replace(/google/g, "XYZ");
+}
+
 app.post('/chat', validateChatInput, async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -100,7 +103,7 @@ app.post('/chat', validateChatInput, async (req, res) => {
         },
         {
           role: "model",
-          parts: [{ text: "I understand my role as a professional coding assistant. I will provide clear, practical coding advice and examples while following best practices." }],
+          parts: [{ text: "I understand my role as a professional coding assistant developed by XYZ. I will provide clear, practical coding advice and examples while following best practices." }],
         },
         ...chatHistory
       ],
@@ -108,9 +111,10 @@ app.post('/chat', validateChatInput, async (req, res) => {
 
     const result = await chat.sendMessage(message);
     const response = await result.response;
+    const filteredResponse = customizeResponse(response.text());
 
     res.json({
-      message: response.text(),
+      message: filteredResponse,
       timestamp: new Date().toISOString()
     });
   } catch (error) {

@@ -69,7 +69,7 @@ app.use('/chat', limiter);
 
 const validateChatInput = [
   body('message').trim().notEmpty().withMessage('Message cannot be empty')
-    .isLength({ max: 2000 }).withMessage('Message too long'),
+    .isLength({ max: 2000000 }).withMessage('Message too long'),
   body('context').isArray().optional(),
 ];
 

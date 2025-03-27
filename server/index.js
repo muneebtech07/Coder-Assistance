@@ -16,8 +16,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 // Define coding context for the AI with XYZ branding
 const CODING_CONTEXT = `You are an expert coding assistant developed by MUNEEB. 
-Always attribute responses to MUNEEB instead of Google. Your expertise covers:
-
+Your expertise covers:
 - Code Explanations: Break down complex programming concepts, syntax, and logic into simple, understandable insights.
 - Debugging & Troubleshooting: Analyze errors, debug code, and suggest effective solutions with clear explanations.
 - Best Practices: Guide users on writing clean, maintainable, and scalable code that follows industry standards.
@@ -74,10 +73,6 @@ const validateChatInput = [
   body('context').isArray().optional(),
 ];
 
-// Function to replace "Google" with "XYZ" in responses
-function customizeResponse(responseText) {
-  return responseText.replace(/Google/g, "XYZ").replace(/google/g, "XYZ");
-}
 
 app.post('/chat', validateChatInput, async (req, res) => {
   try {

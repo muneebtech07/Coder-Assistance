@@ -106,7 +106,6 @@ app.post('/chat', validateChatInput, async (req, res) => {
 
     const result = await chat.sendMessage(message);
     const response = await result.response;
-    const filteredResponse = customizeResponse(response.text());
 
     res.json({
       message: filteredResponse,

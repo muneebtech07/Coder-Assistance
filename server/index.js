@@ -108,7 +108,7 @@ app.post('/chat', validateChatInput, async (req, res) => {
     const response = await result.response;
 
     res.json({
-      message: filteredResponse,
+      message: response.text(),
       timestamp: new Date().toISOString()
     });
   } catch (error) {
